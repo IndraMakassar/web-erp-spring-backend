@@ -22,7 +22,7 @@ repositories {
 	mavenCentral()
 }
 
-extra["snippetsDir"] = file("build/generated-snippets")
+//extra["snippetsDir"] = file("build/generated-snippets")
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -45,11 +45,11 @@ tasks.withType<Test> {
 	useJUnitPlatform()
 }
 
-tasks.test {
-	outputs.dir(snippetsDir)
-}
+//tasks.test {
+//	outputs.dir(snippetsDir)
+//}
 
-tasks.asciidoctor {
-	inputs.dir(snippetsDir)
-	dependsOn(test)
-}
+//tasks.asciidoctor {
+//	inputs.dir(snippetsDir)
+//	dependsOn(test)
+//}
