@@ -1,5 +1,5 @@
 package com.example.weberpspringbackend.model.entity;
 
-enum Status {
+enum ProjectStatus {
     onProgress, done, cancelled
 }
