@@ -15,5 +15,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private Department department;
+    private String position;
 
 }
