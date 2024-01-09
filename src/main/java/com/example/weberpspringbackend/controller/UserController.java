@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getMeetingById(@PathVariable long id) {
+    public ResponseEntity<User> getUserById(@PathVariable long id) {
         Optional<User> user = userRepository.findById(id);
         return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
