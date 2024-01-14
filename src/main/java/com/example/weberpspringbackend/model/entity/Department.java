@@ -1,5 +1,5 @@
 package com.example.weberpspringbackend.model.entity;
 
-enum Department {
+public enum Department {
     ICT
 }
