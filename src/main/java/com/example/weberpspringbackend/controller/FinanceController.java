@@ -2,16 +2,16 @@ package com.example.weberpspringbackend.controller;
 
 import com.example.weberpspringbackend.model.entity.Finance;
 import com.example.weberpspringbackend.model.repository.FinanceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/finances")
+@RequiredArgsConstructor
 public class FinanceController {
-    @Autowired
-    private FinanceRepository financeRepository;
+    private final FinanceRepository financeRepository;
 
     @GetMapping
     public ResponseEntity<Iterable<Finance>> getAllFinance() {

@@ -1,13 +1,14 @@
 package com.example.weberpspringbackend.controller;
 
-import com.example.weberpspringbackend.config.AuthService;
-import com.example.weberpspringbackend.model.RegisterRequest;
 import com.example.weberpspringbackend.model.entity.User;
 import com.example.weberpspringbackend.model.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 

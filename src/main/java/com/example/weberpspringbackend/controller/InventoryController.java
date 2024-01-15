@@ -2,16 +2,16 @@ package com.example.weberpspringbackend.controller;
 
 import com.example.weberpspringbackend.model.entity.Inventory;
 import com.example.weberpspringbackend.model.repository.InventoryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/inventories")
+@RequiredArgsConstructor
 public class InventoryController {
-    @Autowired
-    private InventoryRepository inventoryRepository;
+    private final InventoryRepository inventoryRepository;
 
     @GetMapping
     public ResponseEntity<Iterable<Inventory>> getAllInventory() {
