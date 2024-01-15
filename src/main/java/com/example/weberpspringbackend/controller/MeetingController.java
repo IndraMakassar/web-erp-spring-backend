@@ -35,5 +35,4 @@ public class MeetingController {
         Optional<Meeting> meeting = meetingRepository.findById(id);
         return meeting.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-    
 }
