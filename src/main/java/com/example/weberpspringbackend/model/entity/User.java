@@ -20,6 +20,7 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     private String email;
+    private String nama;
     private Department department;
     private UserPosition position;
     @JsonIgnore
