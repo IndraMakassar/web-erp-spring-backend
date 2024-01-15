@@ -23,7 +23,8 @@ public class Meeting {
     private Set<User> participant;
     private String purpose;
     private String topic;
-    private Timestamp time;
+    private Timestamp timeStart;
+    private Timestamp timeEnd;
     private String location;
     private byte[] MoM;
 }
