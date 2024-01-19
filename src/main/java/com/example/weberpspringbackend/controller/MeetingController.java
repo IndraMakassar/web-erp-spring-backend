@@ -36,4 +36,22 @@ public class MeetingController {
         return meeting.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
     
+    @PutMapping("/{id}")
+    public ResponseEntity<Meeting> updateMeetingById(@PathVariable Long id, @RequestBody Meeting newMeeting) {
+        if(meetingRepository.existsById(id)) {
+            Meeting oldMeeting = meetingRepository.findById(id).get();
+            oldMeeting.setTopic(newMeeting.getTopic());
+            oldMeeting.setPurpose(newMeeting.getPurpose());
+            oldMeeting.setLocation(newMeeting.getLocation());
+            oldMeeting.setTimeStart(newMeeting.getTimeStart());
+            oldMeeting.setTimeEnd(newMeeting.getTimeEnd());
+            oldMeeting.setMoM(newMeeting.getMoM());
+            oldMeeting.setParticipant(newMeeting.getParticipant());
+            meetingRepository.save(oldMeeting);
+            return new ResponseEntity<>(oldMeeting, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
 }
