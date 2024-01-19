@@ -3,6 +3,7 @@ package com.example.weberpspringbackend.controller;
 import com.example.weberpspringbackend.model.entity.Inventory;
 import com.example.weberpspringbackend.model.repository.InventoryRepository;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,4 +28,17 @@ public class InventoryController {
         inventoryRepository.save(inventory);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Inventory> updateInventoryById(@PathVariable Long id, @RequestBody Inventory newInventory) {
+        if(inventoryRepository.existsById(id)) {
+            Inventory oldInventory = inventoryRepository.findById(id).get();
+            oldInventory.setJumlah(newInventory.getJumlah());
+            inventoryRepository.save(oldInventory);
+            return new ResponseEntity<>(oldInventory, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
