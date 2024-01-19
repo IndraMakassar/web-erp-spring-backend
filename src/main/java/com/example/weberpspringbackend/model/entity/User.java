@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "user")
@@ -20,7 +21,7 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     private String email;
-    private String nama;
+    private String name;
     private Department department;
     private UserPosition position;
     @JsonIgnore
@@ -64,41 +65,17 @@ public class User implements UserDetails {
         return true;
     }
 
+
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((email == null) ? 0 : email.hashCode());
-        result = prime * result + ((nama == null) ? 0 : nama.hashCode());
-        result = prime * result + ((department == null) ? 0 : department.hashCode());
-        result = prime * result + ((position == null) ? 0 : position.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(email, user.email) && Objects.equals(name, user.name) && department == user.department && position == user.position;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        User other = (User) obj;
-        if (email == null) {
-            if (other.email != null)
-                return false;
-        } else if (!email.equals(other.email))
-            return false;
-        if (nama == null) {
-            if (other.nama != null)
-                return false;
-        } else if (!nama.equals(other.nama))
-            return false;
-        if (department != other.department)
-            return false;
-        if (position != other.position)
-            return false;
-        return true;
+    public int hashCode() {
+        return Objects.hash(email, name, department, position);
     }
-    
 }
