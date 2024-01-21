@@ -36,4 +36,18 @@ public class ProjectController {
         Optional<Project> project = projectRepsotory.findById(id);
         return project.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Project> updateProjectById(@PathVariable Long id, @RequestBody Project newProject) {
+        if (projectRepsotory.existsById(id)) {
+            Project oldProject = projectRepsotory.findById(id).get();
+            oldProject.setStatus(newProject.getStatus());
+            oldProject.setMember(newProject.getMember());
+            projectRepsotory.save(oldProject);
+            return new ResponseEntity<>(oldProject, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
